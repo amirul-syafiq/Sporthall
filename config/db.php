@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
         private $host = 'localhost';
         private $user = 'root';
         private $password = '';
-        private $dbname = 'covid19';
+        private $dbname = 'bookingproject';
 
         // Connect
         public function connect(){

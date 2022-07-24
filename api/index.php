@@ -13,5 +13,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $response;
 });
 
+require '../api/user.php';
+
 
 $app->run();
