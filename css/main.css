@@ -1,0 +1,491 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+html,
+body {
+    margin-top: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+}
+
+.pd-12{
+    padding-top: 12rem;
+}
+
+.profileHeader{
+    box-shadow: inset 0 0 0 1000px rgba(21, 21, 21 ,.35);
+}
+
+
+
+/*navigation section*/
+.nav {
+    z-index: 1000;
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 7rem;
+}
+
+.logo a:hover{
+    color: #0288A3;
+}
+
+.logolink {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.nav div.main_list {
+    height: 65px;
+    float: right;
+    padding-right: 6rem;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.navlink {
+    text-decoration: none;
+    color: black;
+    line-height: 65px;
+    font-size: 20px;
+}
+
+.nav div.main_list ul li a:hover {
+    color: #0288A3;
+}
+
+.nav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.affix {
+    padding: 0;
+    background-color: white;
+    box-shadow: 1px 1px 9px #888888
+}
+
+/*index section*/
+.indexContent{
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    margin-bottom: 15px;
+}
+
+.indexTitle{
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.subtitle{
+    margin: 20px 0;
+}
+
+.indexSubtitle{
+    font-size: 24px;
+    font-weight: 300;
+    color: #444444;
+}
+
+
+.indexBtn{
+    display: inline-block;
+    background: linear-gradient(157deg, hsl(210, 96%, 69%) -12%, #379EB3);
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 0.75rem 1.25rem;
+    margin: 10px 0;
+}
+
+.indexBtn:hover{
+    background-color: teal;
+    color: white;
+}
+/*===== LOGIN =====*/
+.login{
+    display: grid;
+    grid-template-columns: 100%;
+
+}
+
+.login__content{
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.login__forms{
+    position: relative;
+    height: 368px;
+    width: 500px;
+    justify-self: center;
+}
+
+.login__registre, .login__create{
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    background-color: #EFF2F2;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 3px 20px #BBBFBF;
+    animation-duration: .4s;
+    animation-name: animate-login;
+}
+.login__registre{
+    bottom: -2rem;
+}
+
+.login__create{
+    bottom: -5.5rem;
+}
+
+@keyframes animate-login{
+    0%{
+        transform: scale(1,1);
+    }
+    50%{
+        transform: scale(1.1,1.1);
+    }
+    100%{
+        transform: scale(1,1);
+    }
+}
+
+.login__title{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.login__box{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: .5rem;
+    padding: 1.125rem 1rem;
+    background-color: #FFF;
+    margin-top: 1rem;
+    border-radius: .5rem;
+}
+
+.login__icon{
+    font-size: 1.5rem;
+    color:  #9D4BF5;
+}
+
+.login__input{
+    border: none;
+    outline: none;
+    font-size: .938rem;
+    font-weight: 700;
+    color: #23004D;
+}
+
+.login__input::placeholder{
+    font-size: .938rem;
+    color:  #A49EAC;
+}
+
+.login__forgot{
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-top: .5rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #A49EAC;
+}
+
+.login__button{
+    display: block;
+    padding: 1rem;
+    margin: 2rem 0;
+    background: linear-gradient(157deg, hsl(210, 96%, 69%) -12%, #379EB3);
+    color: #FFF;
+    font-weight: 600;
+    text-align: center;
+    border-radius: .5rem;
+    transition: .3s;
+    border: 0px;
+    width: 100%;
+}
+
+.login__button:hover{
+    color: #23004D;
+}
+
+.login__account, .login__signin, .login__signup{
+    font-weight: 600;
+    font-size: .813rem;
+}
+
+.login__account{
+    color: #363D4C;
+}
+
+.login__signin, .login__signup{
+    color: #379EB3;
+    cursor: pointer;
+}
+
+.login__social{
+    margin-top: 2rem;
+}
+
+.login__social-icon{
+    font-size: 1.5rem;
+    color: #363D4C;
+    margin: 0 1.5rem;
+}
+
+/*Show login*/
+.block{
+    display: block;
+}
+
+/*Hidden login*/
+.none{
+    display: none;
+}
+
+.loginButton:hover{
+    background-color:#076DBA; 
+}
+/*=============== PROFILE ===============*/
+/*special class to manipulate the color of navigation bar*/
+.logo-white{
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+.nav-white{
+    text-decoration: none;
+    color: white;
+    line-height: 65px;
+    font-size: 20px;
+}
+
+.profileContainer{
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -50px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    border: 1px solid rgba(0, 0, 0, .05);
+    border-radius: .375rem;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+.card-header {
+    margin-bottom: 0;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    background-color: #fff;
+    grid-template-columns:1fr 1fr;
+}
+
+.profileTitle_section{
+    grid-column: 1 / 2;
+    padding-top: 6rem;
+    color: white;
+
+}
+.profileTitle{
+    font-size: 46px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.profileSubtitle{
+    font-size: 18px;
+}
+.card-profile-image {
+    position: relative;
+}
+
+.card-profile-image img {
+    position: absolute;
+    left: 50%;
+    max-width: 180px;
+    transition: all .15s ease;
+    transform: translate(-50%, -30%);
+    border-radius: .375rem;
+}
+
+.card-profile-image img:hover {
+    transform: translate(-50%, -33%);
+}
+
+.card-profile-stats {
+    padding: 1rem 0;
+}
+
+.card-profile-stats>div {
+    margin-right: 1rem;
+    padding: .875rem;
+    text-align: center;
+}
+
+.card-profile-stats>div:last-child {
+    margin-right: 0;
+}
+
+.card-profile-stats>div .heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+}
+
+.card-profile-stats>div .description {
+    font-size: .875rem;
+    color: #adb5bd;
+}
+.card-body{
+    padding: 2rem 2rem;
+}
+
+.heading-small{
+    font-size: .75rem;
+    padding-top: .25rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+
+.background-color {
+    background-color: #f7fafc !important;
+}
+
+.profileButton{
+    text-align: center;
+    margin-top: 2rem;
+    width: 100px;
+    height: 40px;
+    border:0px;
+    border-radius: 10px;
+    background-color: #379EB3;
+    font-weight: 500;
+}
+.profileButton:hover{
+    color: white;
+}
+
+.profileSideTitle_second{
+    margin-top: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+/*=============== FOOTER ===============*/
+.footer__container {
+    display: grid;
+    row-gap: 2rem;
+    border-bottom: hsl(0, 0%, 94%);
+    grid-template-columns: repeat(4, 2fr);
+    justify-content: space-between;
+    padding-bottom: 3rem;
+}
+
+
+.footer__title {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer__list, 
+.footer__links {
+    display: flex;
+    flex-direction: column;
+    row-gap: .75rem;
+    padding-left: 4rem;
+    list-style: none;
+}
+
+.footer__link {
+    color: hsl(0, 0%, 35%);
+    text-decoration: none;
+    padding-left: 2rem;
+}
+
+
+.footer__link:hover {
+    color: hsl(0, 0%, 15%);
+}
+
+.footer__social {
+    display: flex;
+    column-gap: 1rem;
+    padding-left: 6rem;
+}
+
+.footer__social-link {
+    font-size: 1.25rem;
+    color: hsl(0, 0%, 35%);
+
+}
+
+.footer__social-link:hover {
+    color: hsl(0, 0%, 35%);
+}
+
+.footer__copy {
+    display: block;
+    margin: 3.5rem 0 1rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: hsl(0, 0%, 55%);
+}
+
+/*=============== EVENT ===============*/
+.eventContainer{
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: -50vh;
+}
+
