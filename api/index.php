@@ -14,6 +14,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 require '../api/user.php';
+require '../api/hall.php';
 
 
 $app->run();
