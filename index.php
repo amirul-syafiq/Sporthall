@@ -2,9 +2,10 @@
 <html>
 
     <head>
+    <link rel="stylesheet" href="css/main.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-        </script>
+       
         <?php include 'template/head.php'; ?>
     </head>
 
@@ -35,6 +36,7 @@
                                 echo '<a href="src/booking.php" class="indexBtn">Book Now</a>';
                             }else{
                                 echo '<a href="src/login.php" class="indexBtn">Book Now</a>';
+                                // echo '<a href="'.$GLOBALS['URL'].'" class="indexBtn">Book Now</a>';
                             }
                         ?>
                        
