@@ -37,43 +37,7 @@
                             </div>
                         </form>
 
-                        <!-- <form action="Register" class="login__create none" id="login-up" method="post">
-                            <h1 class="login__title">Create Account</h1>
-                           
-                           
-                           
-                            <div class="login__box">
-                                <i class='bx bx-user login__icon'></i>
-                                <input type="text" placeholder="Username" name="username" class="login__input">
-                            </div>
-
-                            <div class="login__box">
-                                <i class='bx bx-at login__icon'></i>
-                              
-                                <input type="email" placeholder="Email" name="email" class="login__input">
-
-                              
-                            </div>
-                            <div class="login__box">
-                                <i class='bx bx-lock-alt login__icon'></i>
-                                
-                                <input type="password" placeholder="Password" name="password" class="login__input">
-                               
-                            </div>
-
-                            <button class="login__button">Sign Up</button>
-
-                            <div>
-                                <span class="login__account">Already have an Account ?</span>
-                                <span class="login__signup" id="sign-in">Sign In</span>
-                            </div>
-
-                            <div class="login__social">
-                                <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
-                                <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
-                                <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
-                            </div>
-                        </form> -->
+                 
                     </div>
                 </div>
             </div>

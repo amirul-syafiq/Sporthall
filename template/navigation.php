@@ -12,13 +12,11 @@
                 if (isset($_SESSION['role'])) {
                 
                 if ($_SESSION['role'] == 'customer' ) {
-                    // echo '<li><a href='"+request.getContextPath()+"/Profile' class='navlink'>Profile</a></li>'
                      echo "<li><a href='' class='navlink'>Profile</a></li>";
                 }            
                 } ?>
                
-                <!-- <li><a href="<%= request.getContextPath() %>/View/BookNow.jsp" class="navlink">Book now</a></li>
-                <li><a href="<%= request.getContextPath() %>/ViewEvent" class="navlink">Event</a></li> -->
+               
                 <li><a href="" class="navlink">Book now</a></li>
                 <li><a href="" class="navlink">Event</a></li>
                 <?php 
@@ -28,9 +26,7 @@
                         echo "<li><a href='../src/logout.php' class='navlink'>Log Out</a></li>";
                     }
 
-                    // if (isset($_GET['logout'])) {
-                    //    session_destroy();
-                    //   }
+                 
                 ?>
                 
               
