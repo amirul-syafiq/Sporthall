@@ -1,0 +1,130 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 5, 2022, 11:56:33 AM
+    Author     : Legion
+*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+body, div, form, input, select, p { 
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    color: #eee;
+}
+
+h1{
+    text-transform: uppercase;
+    font-weight: 400;
+}
+h2 {
+    margin: 0 0 0 8px;
+    font-weight: 400;
+    text-align: left;
+}
+td{
+    color: black;
+}
+form {
+    background: transparent; 
+    border-radius: 10px;
+}
+.title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.info {
+    display: flex;
+    
+}
+input, select {
+    padding: 5px;
+    margin-bottom: 30px;
+    background: #F5F5F5;
+    border: 1px solid black;
+}
+input::placeholder {
+    color: white;
+}
+.text{
+    color:black;
+}
+option:focus {
+    border: none;
+}
+option {
+    background: #F5F5F5; 
+    border: none;
+}
+.role{
+    color: black;
+}
+.btn-item, .btn-reset, button {
+    padding: 10px 5px;
+    margin-top: 20px;
+    border-radius: 5px; 
+    border: none;
+    background: #26a9e0; 
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    width: 45%; 
+}
+.btn-item, .btn-reset {
+    display: inline-block;
+    
+}
+
+button:hover, .btn-item:hover {
+    background: #2b9c27;
+}
+button:hover, .btn-reset:hover {
+    background: #eb3d26;
+}
+
+.main-block {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-block h2 {
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+}
+
+.main-block .card {
+    background-color: #62BDBD;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 50px;
+}
+
+.main-block .card table {
+    border: none;
+    font-size: 16px;
+    height: 270px;
+    width: 80%;
+}
+
+.edit {
+    position: absolute;
+    color: #e7e7e8;
+    right: 14%;
+}

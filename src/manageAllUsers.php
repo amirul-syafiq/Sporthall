@@ -36,13 +36,19 @@
             td{
                 padding: 20px 20px 20px 10px;
             }
+
+            #tbodyusers td{
+                padding:10px;
+            }
         </style> 
         
         <?php include "../template/head.php"; ?> 
         
     </head>
     <body>
-               
+
+    <?php include "../template/adminNav.php"; ?>
+            
         <div class="container">
             <div class="manageUserTitle"><br><br>Manage User Profile</div>
             <div class="row justify-content">
@@ -62,22 +68,11 @@
                                 </tr>
                               </thead>
                               <tbody id="tbodyusers">
-                                    <!-- <tr>
-                                        <td style="padding:10px;">
-                                            <form action="ViewUser">
-                                                <input type="hidden" name="username" value="<%=ul.get(i).getUserName()%>">
-                                                <button type="submit" class="btn btn-primary">Update</button>
-                                            </form>
-                                        </td>
-                                        <td style="padding:10px;">
-                                            <form method="get" action="DeleteUser">
-                                                <input type="hidden" name="username" value="<%=ul.get(i).getUserName()%>">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr> -->
                                 </tbody>                
                           </table>
+                          <div>
+                          <p></p>
+                          </div>
                           </div>
                         </div>
                     </div>    
@@ -101,16 +96,59 @@
 
 
                         tbody += "<tr><td>" + users[i].username +"</td>" + "<td>" + users[i].name + "</td>"
-                                    +"</td>" + "<td>" + users[i].email + "</td>"
-                                    +"</td>" + "<td>" + users[i].role + "</td><tr>";
+                                    +"<td>" + users[i].email + "</td>"
+                                    +"<td>" + users[i].role + "</td>"
+                                    +"<td><button class='btn btn-primary' onclick='updatePage(\""+users[i].username+"\",\""+users[i].name+"\",\""+users[i].role+"\")'>Update</button></td>"
+                                    +"<td><button class='btn btn-danger' onclick='deleteUser(\""+users[i].username+"\",\""+users[i].role+"\")'>Delete</button></td></tr>"
 
                     }document.getElementById('tbodyusers').innerHTML= tbody;
-            },
-            error: function (xhr, status, error) {
-                alert('error' + xhr + ", " + status + "," + error);
-        }
+                },
+                error: function (xhr, status, error) {
+                    alert('error' + xhr + ", " + status + "," + error);
+            }
 
-        });});
+            });
+        });
+        
+        function updatePage(username,name,role){
+
+            sessionStorage.setItem("username", username);
+            sessionStorage.setItem("name", name);
+            sessionStorage.setItem("role", role);
+            window.location.href = "updateUser_admin.php";
+
+        }   
+
+        function deleteUser(username,role) {
+
+            if(role == "CUSTOMER"){
+               $.ajax({
+                    dataType: "json",
+                    type: "DELETE",
+                    url: "http://localhost/Sporthall/api/customer/"+ username,
+                    
+                    success: function (data, status, xhr) {
+                        location.reload();
+                    },
+                    error: function (xhr, resp, text) {
+                        alert("error " + xhr + ", " + resp + ", " + text);
+                    }
+                }); 
+            }else{
+                $.ajax({
+                    dataType: "json",
+                    type: "DELETE",
+                    url: "http://localhost/Sporthall/api/user/"+ username,
+                    
+                    success: function (data, status, xhr) {
+                        location.reload();
+                    },
+                    error: function (xhr, resp, text) {
+                        alert("error " + xhr + ", " + resp + ", " + text);
+                    }
+                });  
+            }      
+        }
 
         </script>
 

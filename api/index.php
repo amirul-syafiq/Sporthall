@@ -52,7 +52,7 @@ $app->get('/user/{username}', function (Request $request, Response $response, ar
         $db = $db->connect();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $patients = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $user = $stmt->fetch(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
         
@@ -61,7 +61,65 @@ $app->get('/user/{username}', function (Request $request, Response $response, ar
             "rowcount" => $count
         );
 
-        return $response->withJson($patients);
+        return $response->withJson($user);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//read customer (admin)
+$app->get('/customer/{username}', function (Request $request, Response $response, array $args) {
+
+    try {
+        $username = $args['username'];
+        $sql = "SELECT * FROM customer where userId = '$username'";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $cust = $stmt->fetch(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+        return $response->withJson($cust);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//Read hall
+$app->get('/halls', function (Request $request, Response $response, array $args) {
+
+    try {
+        $sql = "SELECT * FROM hall";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $halls = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+
+        return $response->withJson($halls);
     } catch (PDOException $e) {
         $data = array(
             "status" => "fail"
@@ -117,7 +175,44 @@ $app->put('/user/{username}', function (Request $request, Response $response, ar
     $email = $data['email'];
     $name = $data['name'];
     $role = $data['role'];
-    $sql = "UPDATE user SET password = '$password', email = '$email', name = '$name', role = '$role 'WHERE username = '$username'";
+    $sql = "UPDATE user SET password = '$password', email = '$email', name = '$name', role = '$role' WHERE username = '$username'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//Update customer
+$app->put('/cust/{username}', function (Request $request, Response $response, array $args) {
+
+    $data = $request->getParsedBody();
+    $username = $args['username'];
+    $password = $data['password'];
+    $email = $data['email'];
+    $name = $data['name'];
+    $role = $data['role'];
+    $age = $data['age'];
+    $address = $data['address'];
+    $city = $data['city'];
+    $postal = $data['postal'];
+    $country = $data['country'];
+
+    $sql = "UPDATE user SET email = '$email', role = '$role' WHERE username = '$username'";
+
     try {
         $db = new db();
         // Connect
@@ -155,36 +250,48 @@ $app->delete('/user/{username}', function (Request $request, Response $response,
         return $response->withJson($data);
     } catch (PDOException $e) {
         $data = array(
-            "status" => "fail"
+            "status" => $e
         );
         echo json_encode($data);
     }
     return $response;
 });
 
-//Read hall
-$app->get('/halls', function (Request $request, Response $response, array $args) {
+//Delete customer (admin)
+$app->delete('/customer/{username}', function (Request $request, Response $response, array $args) {
+    
+    $username = $args['username'];
 
+    $sql = "DELETE FROM customer WHERE userId = '$username'";
     try {
-        $sql = "SELECT * FROM hall";
         $db = new db();
         // Connect
         $db = $db->connect();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        $halls = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $count = $stmt->rowCount();
         $db = null;
-        
-        $data = array(
-            "status" => "success",
-            "rowcount" => $count
-        );
-
-        return $response->withJson($halls);
     } catch (PDOException $e) {
         $data = array(
-            "status" => "fail"
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+
+    $sql = "DELETE FROM user WHERE username = '$username'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
         );
         echo json_encode($data);
     }

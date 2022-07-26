@@ -33,6 +33,9 @@
     </style> 
 </head>
 <body>
+    
+<?php include "../template/adminNav.php"; ?>
+
         <div class="container">
             <div class="manageBookingTitle"><br><br>View Sports Halls</div>
             <div class="row justify-content">
