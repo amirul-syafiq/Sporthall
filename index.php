@@ -37,6 +37,9 @@
                 <?php 
 
                     if(isset($_SESSION['username'])){
+                        if($_SESSION['role'] == 'ADMIN'){
+                            header("Location: src/admin.php");
+                        }
                         // echo '<li><a href='"+request.getContextPath()+"/Logout' class='navlink'>Log Out</a></li>';
                         echo "<li><a href='src/logout.php' class='navlink'>Log Out</a></li>";
                     }
