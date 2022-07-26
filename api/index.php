@@ -62,6 +62,7 @@ $app->post('/signUp', function (Request $request, Response $response) {
 
     $sql2="INSERT INTO customer (userId,age,address,city,country,postal)
     VALUES (:username,:age,:address,:city,:country,:postal)";
+    
     try {
         $db = new db();
         // Connect
