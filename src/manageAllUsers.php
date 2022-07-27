@@ -87,7 +87,7 @@
             $.ajax({
 
                 type: "GET",
-                url: "http://localhost/Sporthall/api/user",
+                url: baseURL+"/api/user",
                 dataType: "json",
                 success: function (users, status, xhr) {
 
@@ -126,7 +126,7 @@
 
             $.ajax({
                     type: "GET",
-                    url: "http://localhost/Sporthall/api/booking/"+ username,
+                    url: baseURL+"/api/booking/"+ username,
                     dataType: "json",
                     success: function (item, status, xhr) {
 
@@ -145,7 +145,7 @@
                         $.ajax({
                                 dataType: "json",
                                 type: "DELETE",
-                                url: "http://localhost/Sporthall/api/user/"+ username,
+                                url: baseURL+"/api/user/"+ username,
                                 
                                 success: function (data, status, xhr) {
                                     location.reload();
@@ -166,7 +166,7 @@
             $.ajax({
                 
                 type: "PUT",
-                url: "http://localhost/Sporthall/api/hall/" + hallNo + "/" + game + "/" + time + "/" + vacancy,
+                url: baseURL+"/api/hall/" + hallNo + "/" + game + "/" + time + "/" + vacancy,
                 async: true,
                 dataType: "json",
                 success: function (result, status, xhr) { 

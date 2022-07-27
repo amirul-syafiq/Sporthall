@@ -46,7 +46,7 @@
                 $.ajax({
 
                 type: "GET",
-                url: "http://localhost/Sporthall/api/user/" + username,
+                url: baseURL+"/api/user/" + username,
                 dataType: "json",
                 success: function (user, status, xhr) {
 
@@ -60,7 +60,7 @@
 
                         $.ajax({
                         type: "GET",
-                        url: "http://localhost/Sporthall/api/customer/" + username,
+                        url: baseURL+"/api/customer/" + username,
                         dataType: "json",
                         success: function (userc, status, xhr) {
                             
@@ -113,7 +113,7 @@
                     
                     $.ajax({
                         type: "PUT",
-                        url: "http://localhost/Sporthall/api/user/" + username,
+                        url: baseURL+"/api/user/" + username,
                         async: true,
                         data: formData,
                         dataType: "json",

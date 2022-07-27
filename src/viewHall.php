@@ -101,7 +101,7 @@
                 $.ajax({
 
                     type: "GET",
-                    url: "http://localhost/Sporthall/api/halls",
+                    url: baseURL+"/api/halls",
                     dataType: "json",
                     success: function (item, status, xhr) {
 
