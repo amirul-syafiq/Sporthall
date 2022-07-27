@@ -83,6 +83,7 @@
         
         $(document).ready(function() {
 
+
             $.ajax({
 
                 type: "GET",
@@ -99,7 +100,7 @@
                                     +"<td>" + users[i].email + "</td>"
                                     +"<td>" + users[i].role + "</td>"
                                     +"<td><button class='btn btn-primary' onclick='updatePage(\""+users[i].username+"\",\""+users[i].name+"\",\""+users[i].role+"\")'>Update</button></td>"
-                                    +"<td><button class='btn btn-danger' onclick='deleteUser(\""+users[i].username+"\",\""+users[i].role+"\")'>Delete</button></td></tr>"
+                                    +"<td><button class='btn btn-danger' onclick='deleteUser(\""+users[i].username+"\")'>Delete</button></td></tr>";
 
                     }document.getElementById('tbodyusers').innerHTML= tbody;
                 },
@@ -119,21 +120,62 @@
 
         }   
 
-        function deleteUser(username,role) {
+        function deleteUser(username) {
 
-               $.ajax({
+            var hallNo, game, time, vacancy;
+
+            $.ajax({
+                    type: "GET",
+                    url: "http://localhost/Sporthall/api/booking/"+ username,
                     dataType: "json",
-                    type: "DELETE",
-                    url: "http://localhost/Sporthall/api/user/"+ username,
-                    
-                    success: function (data, status, xhr) {
-                        location.reload();
+                    success: function (item, status, xhr) {
+
+                        if(item.length>0){
+
+                            for(let i=0;i<item.length;i++){
+                                hallNo = item[i].hallNo;
+                                game = item[i].game;
+                                time = item[i].session;
+                                vacancy = "1";
+                                updateVacancy.call(this, hallNo, game, time, vacancy);
+                            }
+                        }
+                    },
+                    complete: function(){
+                        $.ajax({
+                                dataType: "json",
+                                type: "DELETE",
+                                url: "http://localhost/Sporthall/api/user/"+ username,
+                                
+                                success: function (data, status, xhr) {
+                                    location.reload();
+                                },
+                                error: function (xhr, resp, text) {
+                                    alert("error " + xhr + ", " + resp + ", " + text);
+                                }
+                            });                        
                     },
                     error: function (xhr, resp, text) {
                         alert("error " + xhr + ", " + resp + ", " + text);
                     }
-                });
-                   
+            });                 
+        }
+
+        function updateVacancy(hallNo, game, time, vacancy) { 
+
+            $.ajax({
+                
+                type: "PUT",
+                url: "http://localhost/Sporthall/api/hall/" + hallNo + "/" + game + "/" + time + "/" + vacancy,
+                async: true,
+                dataType: "json",
+                success: function (result, status, xhr) { 
+                    console.log("Hall vacancy updated.");
+                },
+                error: function (xhr, status, error) { 
+                    alert('error' + xhr + ", " + status + "," + error);
+                }
+            });          
         }
 
         </script>
