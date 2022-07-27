@@ -338,7 +338,40 @@ $app->post('/booking', function (Request $request, Response $response) {
     }
     return $response;
 });
-
+//Create event
+$app->post('/event', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $eventName=$data['eventName'];
+    $eventDate=$data['eventDate'];
+    $eventPrice=15;
+    $customerId=$data['username'];
+    
+    $sql = "INSERT INTO event (eventName, eventDate, eventPrice, customerId)
+    VALUES (:eventName, :eventDate, :eventPrice, :customerId)";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':eventName', $eventName);
+        $stmt->bindParam(':eventDate', $eventDate);
+        $stmt->bindParam(':eventPrice', $eventPrice);
+        $stmt->bindParam(':customerId', $customerId);
+        
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 //Update user
 $app->put('/user/{username}', function (Request $request, Response $response, array $args) {
     $data = $request->getParsedBody();

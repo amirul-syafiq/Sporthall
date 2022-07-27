@@ -18,7 +18,7 @@
                
                
                 <li><a href="../src/pricing.php" class="navlink">Book now</a></li>
-                <li><a href="" class="navlink">Event</a></li>
+                <li><a href="../src/event.php" class="navlink">Event</a></li>
                 <?php 
 
                     if(isset($_SESSION['username'])){

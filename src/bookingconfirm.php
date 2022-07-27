@@ -126,7 +126,7 @@
             $.ajax({
     
     type: "GET",
-    url: "http://localhost/Sporthall/api/user/"+username,
+    url: baseURL+"/api/user/"+username,
     dataType: "json",
     success: function (user, status, xhr) {
         
@@ -143,7 +143,7 @@ complete:function(){
     $.ajax({
     
     type: "GET",
-    url: "http://localhost/Sporthall/api/customer/"+username,
+    url: baseURL+"/api/customer/"+username,
     dataType: "json",
     success: function (customer, status, xhr) {
         
@@ -177,12 +177,12 @@ $("#confirm").submit(function(e){
             e.preventDefault();
 
             var formData= $(this).serialize();
-            alert(formData);
+            
 
         
         $.ajax({
             type:"POST",//change type here
-            url:"http://localhost/Sporthall/api/booking",//url yang handle db
+            url:baseURL+"/api/booking",//url yang handle db
             async: true,
             data: formData,//nama variable yg serialize form tu
             dataType: "json",//data type dia change to json
@@ -191,6 +191,23 @@ $("#confirm").submit(function(e){
                     alert("successfully added");
                     
                     window.location.href = "../index.php";
+            },
+            complete:function(){   
+
+            $.ajax({
+                
+                type: "PUT",
+                url: baseURL+"/api/hall/" + hall + "/" + game + "/" + time + "/0" ,
+                async: true,
+                dataType: "json",
+                success: function (result, status, xhr) { 
+                    console.log("Hall vacancy updated.");
+                },
+                error: function (xhr, status, error) { 
+                    alert('error' + xhr + ", " + status + "," + error);
+    }
+});          
+
             },
             error: function(xhr,status,error){
                 alert('error'+ xhr+", "+status+ ","+error);

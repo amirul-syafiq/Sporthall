@@ -34,7 +34,7 @@
                 <!-- <li><a href="<%= request.getContextPath() %>/View/BookNow.jsp" class="navlink">Book now</a></li>
                 <li><a href="<%= request.getContextPath() %>/ViewEvent" class="navlink">Event</a></li> -->
                 <li><a href="src/pricing.php" class="navlink">Book now</a></li>
-                <li><a href="" class="navlink">Event</a></li>
+                <li><a href="src/event.php" class="navlink">Event</a></li>
                 <?php 
 
                     if(isset($_SESSION['username'])){
@@ -79,7 +79,7 @@
                         
 
                             if(isset($_SESSION['username'])){
-                                echo '<a href="src/booking.php" class="indexBtn">Book Now</a>';
+                                echo '<a href="src/pricing.php" class="indexBtn">Book Now</a>';
                             }else{
                                 echo '<a href="src/login.php" class="indexBtn">Book Now</a>';
                             }

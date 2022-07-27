@@ -47,18 +47,18 @@
         $(document).ready(function(){
             var game = <?php echo(json_encode($game)); ?>;
             
-            alert(game);
+            
 $.ajax({
     
     type: "GET",
-    url: "http://localhost/Sporthall/api/halls",
+    url: baseURL+"/api/halls",
     dataType: "json",
     success: function (item, status, xhr) {
 
         for(let i=0;i<item.length;i++){
             var tbody="";
 
-        if(item[i].game == game){
+        if(item[i].game == 'basketball'){
 
             //basketball
 
@@ -67,9 +67,9 @@ $.ajax({
                 if(item[j].game == "basketball"){
                     
                     if(item[j].vacancy == "1"){
-                        tbody += "</td><td><input type='text' value='" + item[j].hallNo+ "'name='hall' hidden</td>"
+                        tbody += "</td><td>" + item[j].hallNo+ "</td>"
                     +"<td>" + item[j].time + "</td>"
-                    +"<td>" + item[j].date+ "</td>";
+                    +"<td>" + item[j].game+ "</td>";
                         tbody += "<td>Available</td>";
                          tbody+="<td><button class='basketballBtn btn btn-primary'>Booking</button></td></tr>";
                         
@@ -78,18 +78,18 @@ $.ajax({
                 }
 
             }
-        }else if(item[i].game == game){
+        }else if(item[i].game == "ping-pong"){
 
             //ping-pong
 
             for(let j=0;j<item.length;j++){
 
-                if(item[j].game == "ping-pong"){
+                if(item[j].game == game){
                     
                     if(item[j].vacancy == "1"){
                         tbody += "</td><td>" + item[j].hallNo+ "</td>"
                     +"<td>" + item[j].time + "</td>"
-                    +"<td>" + item[j].date+ "</td>";
+                    +"<td>" + item[j].game+ "</td>";
                         tbody += "<td>Available</td>";
                         tbody+="<td><button class='ping-pongBtn btn btn-primary'>Booking</button></td></tr>";
                     }
@@ -141,8 +141,8 @@ alert('error' + xhr + ", " + status + "," + error);
             sessionStorage.setItem("game", col3);
             window.location.href = "bookingconfirm.php";
          
-        //   data.submit();
-         alert(data);
+        
+         
     });
     $("#Game").on('click','.ping-pongBtn',function(){
          // get the current row
@@ -152,12 +152,12 @@ alert('error' + xhr + ", " + status + "," + error);
          var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
          var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
          var data=col1+"\n"+col2+"\n"+col3;
-        //  data.submit();
+       
             sessionStorage.setItem("hall", col1);
             sessionStorage.setItem("time", col2);
             sessionStorage.setItem("game", col3);
             window.location.href = "bookingconfirm.php";
-         alert(data);
+        
          
     });
     $("#Game").on('click','.basketballBtn',function(){
@@ -172,8 +172,7 @@ alert('error' + xhr + ", " + status + "," + error);
             sessionStorage.setItem("time", col2);
             sessionStorage.setItem("game", col3);
             window.location.href = "bookingconfirm.php";
-        //   data.submit();
-         alert(data);
+      
          
          
     });
