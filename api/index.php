@@ -390,4 +390,66 @@ $app->delete('/customer/{username}', function (Request $request, Response $respo
     return $response;
 });
 
+//read profile
+$app->get("/profile/{username}",function(Request $request, Response $response, array $args){
+    try {
+        $username = $args['username'];
+        $sql = "SELECT * FROM customer WHERE userId = '$username'";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($users);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($users);
+    }
+    return $response;
+});
+
+//update profile
+$app->put("/updateProfile/{username}",function(Request $request, Response $response, array $args){
+
+    $data = $request->getParsedBody();
+    $username = $args['username'];
+    $email = $data['email'];
+    $name = $data['name'];
+    $age = $data['age'];
+    $address = $data['address'];
+    $city = $data['city'];
+    $postal = $data['postal'];
+    $country = $data['country'];
+
+    $sql = "UPDATE user SET 
+        email = '$email',name = '$name',age = '$age',address = '$address'
+        city = '$city',postal = '$postal',country = '$country'
+        WHERE username = '$username'";
+
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($user);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 $app->run();

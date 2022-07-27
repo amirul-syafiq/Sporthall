@@ -41,7 +41,9 @@
                             header("Location: src/admin.php");
                         }
                         // echo '<li><a href='"+request.getContextPath()+"/Logout' class='navlink'>Log Out</a></li>';
+                        echo "<li><a href='src/profile.php' class='navlink'>Profile</a></li>";
                         echo "<li><a href='src/logout.php' class='navlink'>Log Out</a></li>";
+                        
                     }
 
                     // if (isset($_GET['logout'])) {
