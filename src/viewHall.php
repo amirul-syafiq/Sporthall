@@ -114,10 +114,15 @@
                             for(let j=0;j<item.length;j++){
 
                                 if(item[j].game == "basketball"){
-                                    tbodybb += "<tr><td>" + item[j].game +"</td>" + "<td>" + item[j].hallNo+ "</td>"
-                                    +"</td>" + "<td>" + item[j].time + "</td>"
-                                    +"</td>" + "<td>" + item[j].date+ "</td>"
-                                    +"</td>" + "<td>" + item[j].vacancy + "</td><tr>";
+                                    tbodybb += "<tr><td>" + item[j].game +"</td><td>" + item[j].hallNo+ "</td>"
+                                    +"<td>" + item[j].time + "</td>"
+                                    +"<td>" + item[j].date+ "</td>";
+                                    if(item[j].vacancy == "1"){
+                                        tbodybb += "<td>Available</td></tr>";
+                                    }else{
+                                        tbodybb += "<td>Booked</td></tr>";
+                                    }
+                                    
                                 }
 
                             }document.getElementById('tbodybb').innerHTML= tbodybb;
@@ -129,10 +134,14 @@
                             for(let j=0;j<item.length;j++){
 
                                 if(item[j].game == "ping-pong"){
-                                    tbodypp += "<tr><td>" + item[j].game +"</td>" + "<td>" + item[j].hallNo+ "</td>"
-                                    +"</td>" + "<td>" + item[j].time + "</td>"
-                                    +"</td>" + "<td>" + item[j].date+ "</td>"
-                                    +"</td>" + "<td>" + item[j].vacancy + "</td><tr>";
+                                    tbodypp += "<tr><td>" + item[j].game +"</td><td>" + item[j].hallNo+ "</td>"
+                                    +"<td>" + item[j].time + "</td>"
+                                    +"<td>" + item[j].date+ "</td>";
+                                    if(item[j].vacancy == "1"){
+                                        tbodypp += "<td>Available</td></tr>";
+                                    }else{
+                                        tbodypp += "<td>Booked</td></tr>";
+                                    }
                                 }
 
                             }document.getElementById('tbodypp').innerHTML= tbodypp;
@@ -144,10 +153,15 @@
                             for(let j=0;j<item.length;j++){
 
                                 if(item[j].game == "gymnasium"){
-                                    tbodygym += "<tr><td>" + item[j].game +"</td>" + "<td>" + item[j].hallNo+ "</td>"
-                                    +"</td>" + "<td>" + item[j].time + "</td>"
-                                    +"</td>" + "<td>" + item[j].date+ "</td>"
-                                    +"</td>" + "<td>" + item[j].vacancy + "</td><tr>";
+
+                                    tbodygym += "<tr><td>" + item[j].game +"</td><td>" + item[j].hallNo+ "</td>"
+                                    +"<td>" + item[j].time + "</td>"
+                                    +"<td>" + item[j].date+ "</td>";
+                                    if(item[j].vacancy == "1"){
+                                        tbodygym += "<td>Available</td></tr>";
+                                    }else{
+                                        tbodygym += "<td>Booked</td></tr>";
+                                    }
                                 }
 
                             }document.getElementById('tbodygym').innerHTML= tbodygym;
