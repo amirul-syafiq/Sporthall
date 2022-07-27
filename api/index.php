@@ -349,45 +349,4 @@ $app->delete('/user/{username}', function (Request $request, Response $response,
     return $response;
 });
 
-//Delete customer (admin)
-$app->delete('/customer/{username}', function (Request $request, Response $response, array $args) {
-    
-    $username = $args['username'];
-
-    $sql = "DELETE FROM customer WHERE userId = '$username'";
-    try {
-        $db = new db();
-        // Connect
-        $db = $db->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $db = null;
-    } catch (PDOException $e) {
-        $data = array(
-            "status" => $e
-        );
-        echo json_encode($data);
-    }
-
-    $sql = "DELETE FROM user WHERE username = '$username'";
-    try {
-        $db = new db();
-        // Connect
-        $db = $db->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $db = null;
-        $data = array(
-            "status" => "success"
-        );
-        return $response->withJson($data);
-    } catch (PDOException $e) {
-        $data = array(
-            "status" => $e
-        );
-        echo json_encode($data);
-    }
-    return $response;
-});
-
 $app->run();

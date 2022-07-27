@@ -121,21 +121,7 @@
 
         function deleteUser(username,role) {
 
-            if(role == "CUSTOMER"){
                $.ajax({
-                    dataType: "json",
-                    type: "DELETE",
-                    url: "http://localhost/Sporthall/api/customer/"+ username,
-                    
-                    success: function (data, status, xhr) {
-                        location.reload();
-                    },
-                    error: function (xhr, resp, text) {
-                        alert("error " + xhr + ", " + resp + ", " + text);
-                    }
-                }); 
-            }else{
-                $.ajax({
                     dataType: "json",
                     type: "DELETE",
                     url: "http://localhost/Sporthall/api/user/"+ username,
@@ -146,8 +132,8 @@
                     error: function (xhr, resp, text) {
                         alert("error " + xhr + ", " + resp + ", " + text);
                     }
-                });  
-            }      
+                });
+                   
         }
 
         </script>
