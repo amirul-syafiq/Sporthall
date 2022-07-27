@@ -220,6 +220,35 @@ $app->get('/halls', function (Request $request, Response $response, array $args)
     return $response;
 });
 
+//admin get booking
+$app->get('/booking/{username}', function (Request $request, Response $response, array $args) {
+
+    try {
+        $username = $args['username'];
+        $sql = "SELECT * FROM booking where customerId = '$username'";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+
+        return $response->withJson($user);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 
 //Create user
 $app->post('/user', function (Request $request, Response $response) {
@@ -288,22 +317,15 @@ $app->put('/user/{username}', function (Request $request, Response $response, ar
     return $response;
 });
 
-//Update customer
-$app->put('/cust/{username}', function (Request $request, Response $response, array $args) {
+//Update vacancy hall admin
+$app->put('/hall/{hallNo}/{game}/{time}/{vacancy}', function (Request $request, Response $response, array $args) {
 
-    $data = $request->getParsedBody();
-    $username = $args['username'];
-    $password = $data['password'];
-    $email = $data['email'];
-    $name = $data['name'];
-    $role = $data['role'];
-    $age = $data['age'];
-    $address = $data['address'];
-    $city = $data['city'];
-    $postal = $data['postal'];
-    $country = $data['country'];
+    $hall_no = $args['hallNo'];
+    $game = $args['game'];
+    $time = $args['time'];
+    $v = $args['vacancy'];
 
-    $sql = "UPDATE user SET email = '$email', role = '$role' WHERE username = '$username'";
+    $sql = "UPDATE hall SET vacancy = '$v' WHERE hallNo = '$hall_no' AND time='$time' AND game='$game'";
 
     try {
         $db = new db();
