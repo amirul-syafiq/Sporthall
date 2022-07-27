@@ -399,11 +399,12 @@ $app->put('/hall/{hallNo}/{game}/{time}/{vacancy}', function (Request $request, 
 });
 
 //Update hall daily date
-$app->put('/hall/{date}', function (Request $request, Response $response, array $args) {
+$app->put('/hall/{date}/{vacancy}', function (Request $request, Response $response, array $args) {
 
     $date = $args['date'];
+    $v = $args['vacancy'];
 
-    $sql = "UPDATE hall SET date = '$date'";
+    $sql = "UPDATE hall SET date = '$date', vacancy = '$v'";
 
     try {
         $db = new db();

@@ -114,7 +114,7 @@
             
             $.ajax({
                 type: "PUT",
-                url: "http://localhost/Sporthall/api/hall/"+ date,
+                url: "http://localhost/Sporthall/api/hall/"+ date + "/1",
                 async: true,
                 dataType: "json",
                 success: function (result, status, xhr) { 
