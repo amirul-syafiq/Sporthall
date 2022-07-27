@@ -102,6 +102,29 @@
             $('.nav').removeClass('affix');
         }
     });
+    
+    $( document ).ready(function() {
+        
+        //update daily date for hall
+            var now = new Date();
+            var day = now.getDate();
+            var month = now.getMonth() + 1;
+            var year = now.getFullYear();
+            var date = day+"-"+month+"-"+year;
+            
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost/Sporthall/api/hall/"+ date,
+                async: true,
+                dataType: "json",
+                success: function (result, status, xhr) { 
+                    console.log("Hall date updated.");
+                },
+                error: function (xhr, status, error) { 
+                    alert('error' + xhr + ", " + status + "," + error);
+                }
+            });
+        });
 </script>
 
 </html>

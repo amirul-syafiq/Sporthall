@@ -431,6 +431,33 @@ $app->put('/hall/{hallNo}/{game}/{time}/{vacancy}', function (Request $request, 
     return $response;
 });
 
+//Update hall daily date
+$app->put('/hall/{date}', function (Request $request, Response $response, array $args) {
+
+    $date = $args['date'];
+
+    $sql = "UPDATE hall SET date = '$date'";
+
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
 //Delete User
 $app->delete('/user/{username}', function (Request $request, Response $response, array $args) {
     $username = $args['username'];
