@@ -220,6 +220,35 @@ $app->get('/halls', function (Request $request, Response $response, array $args)
     return $response;
 });
 
+//admin get booking
+$app->get('/booking/{username}', function (Request $request, Response $response, array $args) {
+
+    try {
+        $username = $args['username'];
+        $sql = "SELECT * FROM booking where customerId = '$username'";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+
+        return $response->withJson($user);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 
 //Create user
 $app->post('/user', function (Request $request, Response $response) {
@@ -258,7 +287,91 @@ $app->post('/user', function (Request $request, Response $response) {
     }
     return $response;
 });
-
+//Create booking
+$app->post('/booking', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $status = "Booked";
+    $date = $data['date'];
+    $session = $data['session'];
+    $game = $data['game'];
+    if($game=="ping-pong"){
+        $amountToPay=19;
+    }
+    else if($game=="basketball")
+    {
+        $amountToPay=39;
+    }
+    else{
+        $amountToPay=9;
+    }
+    $customerId = $data['username'];
+    $hallNo = $data['hallNo'];
+    
+    $sql = "INSERT INTO booking (status, date, session, game,  amountToPay, customerId, hallNo) 
+    VALUES (:status, :date, :session, :game, :amountToPay, :customerId, :hallNo)";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':status', $status);
+        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':session', $session);
+        $stmt->bindParam(':game', $game);
+        $stmt->bindParam(':amountToPay', $amountToPay);
+        $stmt->bindParam(':customerId', $customerId);
+        $stmt->bindParam(':hallNo', $hallNo);
+       
+       
+       
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+//Create event
+$app->post('/event', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $eventName=$data['eventName'];
+    $eventDate=$data['eventDate'];
+    $eventPrice=15;
+    $customerId=$data['username'];
+    
+    $sql = "INSERT INTO event (eventName, eventDate, eventPrice, customerId)
+    VALUES (:eventName, :eventDate, :eventPrice, :customerId)";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':eventName', $eventName);
+        $stmt->bindParam(':eventDate', $eventDate);
+        $stmt->bindParam(':eventPrice', $eventPrice);
+        $stmt->bindParam(':customerId', $customerId);
+        
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 //Update user
 $app->put('/user/{username}', function (Request $request, Response $response, array $args) {
     $data = $request->getParsedBody();
@@ -288,22 +401,42 @@ $app->put('/user/{username}', function (Request $request, Response $response, ar
     return $response;
 });
 
-//Update customer
-$app->put('/cust/{username}', function (Request $request, Response $response, array $args) {
+//Update vacancy hall admin
+$app->put('/hall/{hallNo}/{game}/{time}/{vacancy}', function (Request $request, Response $response, array $args) {
 
-    $data = $request->getParsedBody();
-    $username = $args['username'];
-    $password = $data['password'];
-    $email = $data['email'];
-    $name = $data['name'];
-    $role = $data['role'];
-    $age = $data['age'];
-    $address = $data['address'];
-    $city = $data['city'];
-    $postal = $data['postal'];
-    $country = $data['country'];
+    $hall_no = $args['hallNo'];
+    $game = $args['game'];
+    $time = $args['time'];
+    $v = $args['vacancy'];
 
-    $sql = "UPDATE user SET email = '$email', role = '$role' WHERE username = '$username'";
+    $sql = "UPDATE hall SET vacancy = '$v' WHERE hallNo = '$hall_no' AND time='$time' AND game='$game'";
+
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//Update hall daily date
+$app->put('/hall/{date}', function (Request $request, Response $response, array $args) {
+
+    $date = $args['date'];
+
+    $sql = "UPDATE hall SET date = '$date'";
 
     try {
         $db = new db();

@@ -11,6 +11,7 @@
     </head>
 
     <body>
+        
     <nav class="nav">
     <div class="container-fluid">
         <div class="logo">
@@ -32,8 +33,8 @@
                
                 <!-- <li><a href="<%= request.getContextPath() %>/View/BookNow.jsp" class="navlink">Book now</a></li>
                 <li><a href="<%= request.getContextPath() %>/ViewEvent" class="navlink">Event</a></li> -->
-                <li><a href="" class="navlink">Book now</a></li>
-                <li><a href="" class="navlink">Event</a></li>
+                <li><a href="src/pricing.php" class="navlink">Book now</a></li>
+                <li><a href="src/event.php" class="navlink">Event</a></li>
                 <?php 
 
                     if(isset($_SESSION['username'])){
@@ -80,7 +81,7 @@
                         
 
                             if(isset($_SESSION['username'])){
-                                echo '<a href="src/booking.php" class="indexBtn">Book Now</a>';
+                                echo '<a href="src/pricing.php" class="indexBtn">Book Now</a>';
                             }else{
                                 echo '<a href="src/login.php" class="indexBtn">Book Now</a>';
                             }
@@ -103,6 +104,29 @@
             $('.nav').removeClass('affix');
         }
     });
+    
+    $( document ).ready(function() {
+        
+        //update daily date for hall
+            var now = new Date();
+            var day = now.getDate();
+            var month = now.getMonth() + 1;
+            var year = now.getFullYear();
+            var date = day+"-"+month+"-"+year;
+            
+            $.ajax({
+                type: "PUT",
+                url: "http://localhost/Sporthall/api/hall/"+ date,
+                async: true,
+                dataType: "json",
+                success: function (result, status, xhr) { 
+                    console.log("Hall date updated.");
+                },
+                error: function (xhr, status, error) { 
+                    alert('error' + xhr + ", " + status + "," + error);
+                }
+            });
+        });
 </script>
 
 </html>
