@@ -3,7 +3,7 @@
         <div class="logo">
            <img src="../images\LOGO-UTM.png" height="42" alt="">
 
-            <a href="" class="logolink">Sport Hall Booking System</a>
+            <a href="../index.php" class="logolink">Sport Hall Booking System</a>
         </div>
         <div id="mainListDiv" class="main_list">
             <ul class="navlinks">
@@ -17,7 +17,7 @@
                 } ?>
                
                
-                <li><a href="" class="navlink">Book now</a></li>
+                <li><a href="../src/pricing.php" class="navlink">Book now</a></li>
                 <li><a href="" class="navlink">Event</a></li>
                 <?php 
 

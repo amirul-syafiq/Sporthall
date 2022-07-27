@@ -11,6 +11,7 @@
     </head>
 
     <body>
+        
     <nav class="nav">
     <div class="container-fluid">
         <div class="logo">
@@ -32,7 +33,7 @@
                
                 <!-- <li><a href="<%= request.getContextPath() %>/View/BookNow.jsp" class="navlink">Book now</a></li>
                 <li><a href="<%= request.getContextPath() %>/ViewEvent" class="navlink">Event</a></li> -->
-                <li><a href="" class="navlink">Book now</a></li>
+                <li><a href="src/pricing.php" class="navlink">Book now</a></li>
                 <li><a href="" class="navlink">Event</a></li>
                 <?php 
 
