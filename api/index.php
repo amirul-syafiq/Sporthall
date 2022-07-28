@@ -570,7 +570,7 @@ $app->put("/updateProfile/{username}", function (Request $request, Response $res
         $data = array(
             "status" => "success"
         );
-        return $response->withJson($user);
+        return $response->withJson($data);
     } catch (PDOException $e) {
         $data = array(
             "status" => $e

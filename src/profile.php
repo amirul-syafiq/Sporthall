@@ -181,8 +181,8 @@
                         profileNameAge += users.name  +" , "+ customer.age;
                         profileCityCountry += customer.city +" , "+ customer.country;
                         inputUsername += "<label class='form-control-label' for='input-username'>Username</label><input type='text' id='input-username' class='form-control form-control-alternative'+ placeholder='Username' name='username' readonly value='" + username + "'>";
-                        inputEmail += "<label class='form-control-label' for='input-email'>Email address</label><input type='email' id='input-email' class='form-control form-control-alternative'+ placeholder='jesse@example.com' name='email' value='" + users.email + "'>";
-                        inputName += "<label class='form-control-label' for='name'>Name</label><input type='text' id='input-name' class='form-control form-control-alternative'+ placeholder='name' name='name' value='" + users.name + "'>";
+                        inputEmail += "<label class='form-control-label' for='input-email'>Email address</label><input type='email' id='input-email' class='form-control form-control-alternative'+ placeholder='jesse@example.com' name='email' readonly value='" + users.email + "'>";
+                        inputName += "<label class='form-control-label' for='name'>Name</label><input type='text' id='input-name' class='form-control form-control-alternative'+ placeholder='name' name='name' readonly value='" + users.name + "'>";
                         inputAge += "<label class='form-control-label' for='age'>Age</label><input type='number' id='input-age' class='form-control form-control-alternative'+ placeholder='age' name='age' value='" + customer.age + "'>";
                         inputAddress += "<label class='form-control-label' for='input-address'>Address</label><input type='text' id='input-address' class='form-control form-control-alternative' + placeholder='Home Address' name='address' value='" + customer.address + "'>"
                         inputCity += "<label class='form-control-label' for='input-city'>City</label><input type='text' id='input-city' class='form-control form-control-alternative'+ placeholder='City' name='city' value='" + customer.city + "'>";
@@ -220,10 +220,12 @@
                 dataType: "json",
                 success: function(result, status, xhr) {
                     alert("Successfully updated!");
-                    location.reload();
+                    window.location.href = "profile.php"
+                    // location.reload();
                 },
                 error: function(xhr, status, error) {
                     alert('error' + xhr + ", " + status + "," + error);
+                    // alert("Successfully updated!");
                 }
 
             });
