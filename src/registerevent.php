@@ -78,7 +78,6 @@
                 e.preventDefault();
 
                 var formData = $(this).serialize();
-                alert(formData);
 
 
                 $.ajax({

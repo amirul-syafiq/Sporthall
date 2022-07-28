@@ -67,11 +67,11 @@
 
                         window.location = baseURL;
                     } else {
-                        alert(data);
+                        alert("Wrong username or password");
                     }
                 },
                 error: function(xhr, status, error) {
-                    alert(error);
+                    alert("Wrong username or password");
                 }
             });
         });
