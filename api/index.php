@@ -16,6 +16,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $response;
 });
 
+//LOGIN
 $app->get('/login/{username}/{password}', function (Request $request, Response $response, array $args) {
 
     try {

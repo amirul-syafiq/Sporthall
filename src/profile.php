@@ -35,9 +35,6 @@
                         </div>
                     </div>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <!-- <%
-                                Customer customer = (Customer) session.getAttribute("customer");
-                            %> -->
                     </div>
                     <div class="pt-0 pt-md-4">
                         <div class="row">
@@ -220,12 +217,12 @@
                 dataType: "json",
                 success: function(result, status, xhr) {
                     alert("Successfully updated!");
-                    window.location.href = "profile.php"
-                    // location.reload();
+                    // window.location.href = "profile.php"
+                    location.reload();
                 },
                 error: function(xhr, status, error) {
                     alert('error' + xhr + ", " + status + "," + error);
-                    // alert("Successfully updated!");
+                   
                 }
 
             });
