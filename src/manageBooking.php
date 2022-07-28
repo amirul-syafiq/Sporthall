@@ -76,7 +76,7 @@
                         var tbodyBooking = "";
                         for (let i = 0; i < booking.length; i++) {
                             tbodyBooking += "<tr><td style='padding:20px 20px 20px 10px;'>"+booking[i].id
-                            +"</td><td style='padding:20px 20px 20px 10px;'>"booking[i].customerId
+                            +"</td><td style='padding:20px 20px 20px 10px;'>"+booking[i].customerId
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+booking[i].date
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+booking[i].status
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+booking[i].amountToPay

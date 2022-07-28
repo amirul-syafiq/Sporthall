@@ -94,7 +94,7 @@
                         var tbodyEvent = "";
                         for (let i = 0; i < event.length; i++) {
                             event += "<tr><td style='padding:20px 20px 20px 10px;'>"+event[i].id
-                            +"</td><td style='padding:20px 20px 20px 10px;'>"event[i].eventName
+                            +"</td><td style='padding:20px 20px 20px 10px;'>"+event[i].eventName
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+event[i].eventDate
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+event[i].eventPrice
                             +"</td><td style='padding:20px 20px 20px 10px;'>"+event[i].customerId

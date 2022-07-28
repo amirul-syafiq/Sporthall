@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include "../template/head.php"; ?>
+        <?php 
+        session_start();
+        if ($_SESSION['role'] != 'ADMIN') {
+           header("Location: ../index.php");
+        }
+        include "../template/head.php"; 
+        ?>
         <title>Admin Page</title>
     </head>
     <body>
@@ -27,8 +33,7 @@
             </div>
         </div>    
 
-        <!--===== MAIN JS =====-->
-        <script src="main.js"></script>
+      
         <?php include "../template/footer.html"; ?>
     </body>
 </html>

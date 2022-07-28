@@ -9,8 +9,8 @@
             <ul class="navlinks">
                 <li><a href="../src/manageAllUsers.php" class="navlink">Users</a></li>
                 <li><a href="../src/viewHall.php" class="navlink">Halls</a></li>
-                <li><a href="/ViewBookingHall" class="navlink">Bookings</a></li>
-                <li><a href="/ViewEvent2" class="navlink">Events</a></li>
+                <li><a href="../src/manageBooking.php" class="navlink">Bookings</a></li>
+                <li><a href="../src/manageEvent.php" class="navlink">Events</a></li>
                 <li><a href="../src/logout.php" class="navlink">Log Out</a></li>
             </ul>
         </div>
