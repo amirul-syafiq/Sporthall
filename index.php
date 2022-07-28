@@ -116,7 +116,7 @@
             
             $.ajax({
                 type: "PUT",
-                url: baseURL+"api/hall/"+ date,
+                url: baseURL+"/api/hall/"+ date,
                 async: true,
                 dataType: "json",
                 success: function (result, status, xhr) { 
