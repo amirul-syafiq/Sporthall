@@ -1,7 +1,7 @@
 <?php
 session_cache_limiter(false);
 
-session_start(); 
+session_start();
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -32,7 +32,7 @@ $app->get('/login/{username}/{password}', function (Request $request, Response $
         $db = null;
         $_SESSION['role'] = $user[0]->role;
         $_SESSION['username'] = $user[0]->username;
-       
+
         return $response->withJson($user);
     } catch (PDOException $e) {
         $data = array(
@@ -51,18 +51,18 @@ $app->post('/signUp', function (Request $request, Response $response) {
     $email = $data['email'];
     $name = $data['name'];
     $role = $data['role'];
-    $age= $data['age'];
+    $age = $data['age'];
     $address = $data['address'];
     $city = $data['city'];
     $country = $data['country'];
-    $postal= $data['postal'];
-    
+    $postal = $data['postal'];
+
     $sql = "INSERT INTO user (username, password, email, name,  role) 
     VALUES (:username, :password, :email, :name, :role)";
 
-    $sql2="INSERT INTO customer (userId,age,address,city,country,postal)
+    $sql2 = "INSERT INTO customer (userId,age,address,city,country,postal)
     VALUES (:username,:age,:address,:city,:country,:postal)";
-    
+
     try {
         $db = new db();
         // Connect
@@ -72,9 +72,9 @@ $app->post('/signUp', function (Request $request, Response $response) {
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':name', $name);
-       
+
         $stmt->bindParam(':role', $role);
-       
+
         $stmt->execute();
         $db = null;
         $db = new db();
@@ -117,7 +117,7 @@ $app->get('/user', function (Request $request, Response $response, array $args) 
         $users = $stmt->fetchAll(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -146,7 +146,7 @@ $app->get('/user/{username}', function (Request $request, Response $response, ar
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -176,7 +176,7 @@ $app->get('/customer/{username}', function (Request $request, Response $response
         $cust = $stmt->fetch(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -204,7 +204,7 @@ $app->get('/halls', function (Request $request, Response $response, array $args)
         $halls = $stmt->fetchAll(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -234,7 +234,7 @@ $app->get('/booking/{username}', function (Request $request, Response $response,
         $user = $stmt->fetchAll(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -258,7 +258,7 @@ $app->post('/user', function (Request $request, Response $response) {
     $email = $data['email'];
     $name = $data['name'];
     $role = $data['role'];
-   
+
     $sql = "INSERT INTO user (username, password, email, name,  role) 
     VALUES (:username, :password, :email, :name, :role)";
     try {
@@ -270,9 +270,9 @@ $app->post('/user', function (Request $request, Response $response) {
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':name', $name);
-       
+
         $stmt->bindParam(':role', $role);
-       
+
         $stmt->execute();
         $db = null;
         $data = array(
@@ -294,19 +294,16 @@ $app->post('/booking', function (Request $request, Response $response) {
     $date = $data['date'];
     $session = $data['session'];
     $game = $data['game'];
-    if($game=="ping-pong"){
-        $amountToPay=19;
-    }
-    else if($game=="basketball")
-    {
-        $amountToPay=39;
-    }
-    else{
-        $amountToPay=9;
+    if ($game == "ping-pong") {
+        $amountToPay = 19;
+    } else if ($game == "basketball") {
+        $amountToPay = 39;
+    } else {
+        $amountToPay = 9;
     }
     $customerId = $data['username'];
     $hallNo = $data['hallNo'];
-    
+
     $sql = "INSERT INTO booking (status, date, session, game,  amountToPay, customerId, hallNo) 
     VALUES (:status, :date, :session, :game, :amountToPay, :customerId, :hallNo)";
     try {
@@ -321,9 +318,9 @@ $app->post('/booking', function (Request $request, Response $response) {
         $stmt->bindParam(':amountToPay', $amountToPay);
         $stmt->bindParam(':customerId', $customerId);
         $stmt->bindParam(':hallNo', $hallNo);
-       
-       
-       
+
+
+
         $stmt->execute();
         $db = null;
         $data = array(
@@ -341,11 +338,11 @@ $app->post('/booking', function (Request $request, Response $response) {
 //Create event
 $app->post('/event', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $eventName=$data['eventName'];
-    $eventDate=$data['eventDate'];
-    $eventPrice=15;
-    $customerId=$data['username'];
-    
+    $eventName = $data['eventName'];
+    $eventDate = $data['eventDate'];
+    $eventPrice = 15;
+    $customerId = $data['username'];
+
     $sql = "INSERT INTO event (eventName, eventDate, eventPrice, customerId)
     VALUES (:eventName, :eventDate, :eventPrice, :customerId)";
     try {
@@ -357,7 +354,7 @@ $app->post('/event', function (Request $request, Response $response) {
         $stmt->bindParam(':eventDate', $eventDate);
         $stmt->bindParam(':eventPrice', $eventPrice);
         $stmt->bindParam(':customerId', $customerId);
-        
+
         $stmt->execute();
         $db = null;
         $data = array(
@@ -484,7 +481,7 @@ $app->delete('/user/{username}', function (Request $request, Response $response,
 
 //Delete customer (admin)
 $app->delete('/customer/{username}', function (Request $request, Response $response, array $args) {
-    
+
     $username = $args['username'];
 
     $sql = "DELETE FROM customer WHERE userId = '$username'";
@@ -524,7 +521,7 @@ $app->delete('/customer/{username}', function (Request $request, Response $respo
 });
 
 //read profile
-$app->get("/profile/{username}",function(Request $request, Response $response, array $args){
+$app->get("/profile/{username}", function (Request $request, Response $response, array $args) {
     try {
         $username = $args['username'];
         $sql = "SELECT * FROM customer WHERE userId = '$username'";
@@ -549,7 +546,7 @@ $app->get("/profile/{username}",function(Request $request, Response $response, a
 });
 
 //update profile
-$app->put("/updateProfile/{username}",function(Request $request, Response $response, array $args){
+$app->put("/updateProfile/{username}", function (Request $request, Response $response, array $args) {
 
     $data = $request->getParsedBody();
     $username = $args['username'];
@@ -587,7 +584,7 @@ $app->put("/updateProfile/{username}",function(Request $request, Response $respo
 });
 
 //admin manage booking
-$app->get("/managebooking",function(Request $request, Response $response){
+$app->get("/managebooking", function (Request $request, Response $response) {
     try {
         $sql = "SELECT * FROM booking";
         $db = new db();
@@ -598,7 +595,7 @@ $app->get("/managebooking",function(Request $request, Response $response){
         $booking = $stmt->fetchAll(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -615,7 +612,7 @@ $app->get("/managebooking",function(Request $request, Response $response){
 });
 
 //admin delete booking
-$app->delete("/deletebooking/{id}",function(Request $request, Response $response, array $args){
+$app->delete("/deletebooking/{id}", function (Request $request, Response $response, array $args) {
     $id = $args['id'];
     $sql = "DELETE FROM booking WHERE id = '$id'";
     try {
@@ -639,7 +636,7 @@ $app->delete("/deletebooking/{id}",function(Request $request, Response $response
 });
 
 //admin manage event
-$app->get("/manageevent",function(Request $request, Response $response){
+$app->get("/manageevent", function (Request $request, Response $response) {
     try {
         $sql = "SELECT * FROM event";
         $db = new db();
@@ -650,7 +647,7 @@ $app->get("/manageevent",function(Request $request, Response $response){
         $event = $stmt->fetchAll(PDO::FETCH_OBJ);
         $count = $stmt->rowCount();
         $db = null;
-        
+
         $data = array(
             "status" => "success",
             "rowcount" => $count
@@ -667,7 +664,7 @@ $app->get("/manageevent",function(Request $request, Response $response){
 });
 
 //admin delete event
-$app->delete("/deleteevent/{id}",function(Request $request, Response $response, array $args){
+$app->delete("/deleteevent/{id}", function (Request $request, Response $response, array $args) {
     $id = $args['id'];
     $sql = "DELETE FROM event WHERE id = '$id'";
     try {

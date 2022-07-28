@@ -1,7 +1,7 @@
 <head>
-<?php include "../template/head.php"; ?>
-<link rel="stylesheet" href="../css/pricing.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <?php include "../template/head.php"; ?>
+    <link rel="stylesheet" href="../css/pricing.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 </head>
 <?php include "../template/navigation.php" ?>
@@ -44,15 +44,15 @@
                 </li>
             </ul>
             <form>
-            <?php 
-                        
+                <?php
 
-                        if(isset($_SESSION['username'])){
-                            echo '<a href="booking.php?game=ping-pong" class="pricing__button">Book Now</a>';
-                        }else{
-                            echo '<a href="login.php" class="pricing__button">Book Now</a>';
-                        }
-                    ?>
+
+                if (isset($_SESSION['username'])) {
+                    echo '<a href="booking.php?game=ping-pong" class="pricing__button">Book Now</a>';
+                } else {
+                    echo '<a href="login.php" class="pricing__button">Book Now</a>';
+                }
+                ?>
             </form>
         </article>
 
@@ -90,19 +90,19 @@
                 </li>
                 <li class="card__list-item">
                     <i class="uil uil-check card__list-icon"></i>
-                    <p class="card__list-description">Free 2  100Plus bottle/session</p>
+                    <p class="card__list-description">Free 2 100Plus bottle/session</p>
                 </li>
             </ul>
             <form>
-            <?php 
-                        
+                <?php
 
-                            if(isset($_SESSION['username'])){
-                                echo '<a href="booking.php?game=basketball" class="pricing__button">Book Now</a>';
-                            }else{
-                                echo '<a href="login.php" class="pricing__button">Book Now</a>';
-                            }
-                        ?>
+
+                if (isset($_SESSION['username'])) {
+                    echo '<a href="booking.php?game=basketball" class="pricing__button">Book Now</a>';
+                } else {
+                    echo '<a href="login.php" class="pricing__button">Book Now</a>';
+                }
+                ?>
             </form>
         </article>
 
@@ -145,15 +145,15 @@
             </ul>
 
             <form>
-            <?php 
-                        
+                <?php
 
-                        if(isset($_SESSION['username'])){
-                            echo '<a href="booking.php?game=gymnasium" class="pricing__button">Book Now</a>';
-                        }else{
-                            echo '<a href="login.php" class="pricing__button">Book Now</a>';
-                        }
-                    ?>
+
+                if (isset($_SESSION['username'])) {
+                    echo '<a href="booking.php?game=gymnasium" class="pricing__button">Book Now</a>';
+                } else {
+                    echo '<a href="login.php" class="pricing__button">Book Now</a>';
+                }
+                ?>
             </form>
         </article>
     </div>

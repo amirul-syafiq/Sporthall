@@ -1,8 +1,7 @@
 <nav class="nav">
     <div class="container-fluid">
         <div class="logo">
-            <img src="../images/LOGO-UTM.png" 
-                 height="42"/>
+            <img src="../images/LOGO-UTM.png" height="42" />
             <a href="../src/admin.php" class="logolink">Sport Hall Booking System</a>
         </div>
         <div id="mainListDiv" class="main_list">
@@ -22,7 +21,7 @@
 
 <!-- Function used to shrink nav bar removing paddings and adding black background -->
 <script>
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(document).scrollTop() > 20) {
             $('.nav').addClass('affix');
             console.log("OK");
