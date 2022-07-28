@@ -6,6 +6,7 @@
     <head>
     <link rel="stylesheet" href="css/main.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
 
         <?php include 'template/head.php'; ?>
     </head>

@@ -7,6 +7,6 @@
 <!--=============== BOXICONS ===============-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="../css/main.css">
-<link rel="icon" type="image/x-icon" href="../images/sports.png">
+<link rel="icon" type="image/x-icon" href="../images/favicon.png">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <script src="../js/main.js"></script>
