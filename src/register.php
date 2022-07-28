@@ -29,7 +29,7 @@
                         <input type="text" class="form-control" placeholder="Name" name="name">
                         <input type="text" class="form-control" placeholder="Age" id="age" name="age">
                         <input type='text' class='form-control'placeholder='Email' name='email' >
-                        <input type='text' class='form-control'placeholder='Role' name='role' value='CUSTOMER' hidden>
+                        <input type='hidden' class='form-control'placeholder='Role' name='role' value='CUSTOMER' >
                     </div>
                     <textarea name="address" id="address" placeholder="Address" class="form-control" style="height: 130px;"></textarea>
 
