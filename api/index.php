@@ -482,4 +482,211 @@ $app->delete('/user/{username}', function (Request $request, Response $response,
     return $response;
 });
 
+//Delete customer (admin)
+$app->delete('/customer/{username}', function (Request $request, Response $response, array $args) {
+    
+    $username = $args['username'];
+
+    $sql = "DELETE FROM customer WHERE userId = '$username'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+
+    $sql = "DELETE FROM user WHERE username = '$username'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//read profile
+$app->get("/profile/{username}",function(Request $request, Response $response, array $args){
+    try {
+        $username = $args['username'];
+        $sql = "SELECT * FROM customer WHERE userId = '$username'";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($users);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($users);
+    }
+    return $response;
+});
+
+//update profile
+$app->put("/updateProfile/{username}",function(Request $request, Response $response, array $args){
+
+    $data = $request->getParsedBody();
+    $username = $args['username'];
+    $email = $data['email'];
+    $name = $data['name'];
+    $age = $data['age'];
+    $address = $data['address'];
+    $city = $data['city'];
+    $postal = $data['postal'];
+    $country = $data['country'];
+
+    $sql = "UPDATE user SET 
+        email = '$email',name = '$name',age = '$age',address = '$address'
+        city = '$city',postal = '$postal',country = '$country'
+        WHERE username = '$username'";
+
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($user);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//admin manage booking
+$app->get("/managebooking",function(Request $request, Response $response){
+    try {
+        $sql = "SELECT * FROM booking";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $booking = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+
+        return $response->withJson($booking);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//admin delete booking
+$app->delete("/deletebooking/{id}",function(Request $request, Response $response, array $args){
+    $id = $args['id'];
+    $sql = "DELETE FROM booking WHERE id = '$id'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//admin manage event
+$app->get("/manageevent",function(Request $request, Response $response){
+    try {
+        $sql = "SELECT * FROM event";
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $event = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $count = $stmt->rowCount();
+        $db = null;
+        
+        $data = array(
+            "status" => "success",
+            "rowcount" => $count
+        );
+
+        return $response->withJson($event);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => "fail"
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
+
+//admin delete event
+$app->delete("/deleteevent/{id}",function(Request $request, Response $response, array $args){
+    $id = $args['id'];
+    $sql = "DELETE FROM event WHERE id = '$id'";
+    try {
+        $db = new db();
+        // Connect
+        $db = $db->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        $data = array(
+            "status" => "success"
+        );
+        return $response->withJson($data);
+    } catch (PDOException $e) {
+        $data = array(
+            "status" => $e
+        );
+        echo json_encode($data);
+    }
+    return $response;
+});
 $app->run();
