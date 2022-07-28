@@ -91,8 +91,7 @@
                             "</td><td style='padding:20px 20px 20px 10px;'>" + booking[i].hallNo +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + booking[i].session +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + booking[i].game +
-                            "</td><td style='padding:10px;'><input type='hidden' name="
-                        id+ " value='" + booking[i].id + "'>" +
+                            "</td><td style='padding:10px;'><input type='hidden' name='id' value='" + booking[i].id + "'>"+
                             "<button class='btn btn-danger' onclick='deleteBooking(\"" + booking[i].id + "\")'>Delete</button></td></tr>"
 
                     }

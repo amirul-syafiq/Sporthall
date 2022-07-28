@@ -550,18 +550,15 @@ $app->put("/updateProfile/{username}", function (Request $request, Response $res
 
     $data = $request->getParsedBody();
     $username = $args['username'];
-    $email = $data['email'];
-    $name = $data['name'];
+    // $email = $data['email'];
+    // $name = $data['name'];
     $age = $data['age'];
     $address = $data['address'];
     $city = $data['city'];
     $postal = $data['postal'];
     $country = $data['country'];
 
-    $sql = "UPDATE user SET 
-        email = '$email',name = '$name',age = '$age',address = '$address'
-        city = '$city',postal = '$postal',country = '$country'
-        WHERE username = '$username'";
+    $sql = "UPDATE customer SET age = '$age', address = '$address',city = '$city',country = '$country',postal = '$postal' WHERE userId = '$username'";
 
     try {
         $db = new db();

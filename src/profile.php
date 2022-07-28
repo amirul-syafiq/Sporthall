@@ -142,7 +142,8 @@
         });
 
         $(document).ready(function() {
-            var username = sessionStorage.getItem('username');
+
+            var username = <?php echo (json_encode($_SESSION['username'])); ?>;
 
             var profileNameAge = "";
             var profileCityCountry = "";
@@ -156,42 +157,58 @@
             var inputCountry = "";
             var inputPostal = "";
 
+            var customer = "";
+
             $.ajax({
 
                 type: 'GET',
-                url: baseURL + "/api/profile/" + username,
+                url: baseURL + "/api/customer/" + username,
                 dataType: "json",
                 success: function(users, status, xhr) {
-                    profileNameAge += status.name + users.age;
-                    profileCityCountry += users.city + users.country;
-                    inputUsername += "<label class='form-control-label' for='input-username'>Username</label><input type='text' id='input-username' class='form-control form-control-alternative'+ placeholder='Username' name='username' readonly value='" + username + "'>";
-                    inputEmail += "<label class='form-control-label' for='input-email'>Email address</label><input type='email' id='input-email' class='form-control form-control-alternative'+ placeholder='jesse@example.com' name='email' value='" + users.email + "'>";
-                    inputName += "<label class='form-control-label' for='name'>Name</label><input type='text' id='input-name' class='form-control form-control-alternative'+ placeholder='name' name='name' value='" + users.name + "'>";
-                    inputAge += "<label class='form-control-label' for='age'>Age</label><input type='number' id='input-age' class='form-control form-control-alternative'+ placeholder='age' name='age' value='" + users.age + "'>";
-                    inputAddress += "<label class='form-control-label' for='input-address'>Address</label><input type='text' id='input-address' class='form-control form-control-alternative' + placeholder='Home Address' name='address' value='" + users.address + "'>"
-                    inputCity += "<label class='form-control-label' for='input-city'>City</label><input type='text' id='input-city' class='form-control form-control-alternative'+ placeholder='City' name='city' value='" + users.city + "'>";
-                    inputCountry += "<label class='form-control-label' for='input-country'>Country</label><input type='text' id='input-country' class='form-control form-control-alternative' + placeholder='Country' name='country' value='" + users.country + "'>";
-                    inputPostal += "<label class='form-control-label' for='input-country'>Postal code</label><input type='number' id='input-postal-code' class='form-control form-control-alternative'+ placeholder='Postal code' name='postal' value='" + users.postal + "'>";
-
-                    document.getElementById('profileNameAge').innerHTML = profileNameAge;
-                    document.getElementById('profileCityCountry').innerHTML = profileCityCountry;
-                    document.getElementById('input-username').innerHTML = inputUsername;
-                    document.getElementById('input-email').innerHTML = inputEmail;
-                    document.getElementById('input-name').innerHTML = inputName;
-                    document.getElementById('input-age').innerHTML = inputAge;
-                    document.getElementById('input-address').innerHTML = inputAddress;
-                    document.getElementById('input-city').innerHTML = inputCity;
-                    document.getElementById('input-country').innerHTML = inputCountry;
-                    document.getElementById('input-postal-code').innerHTML = inputPostal;
+                    customer = users;
                 },
                 error: function(xhr, status, error) {
                     alert(error);
-                }
+                },
+                complete: function() {
+                $.ajax({
+
+                    type: "GET",
+                    url: baseURL + "/api/user/" + username,
+                    dataType: "json",
+                    success: function(users, status, xhr) {
+
+                        profileNameAge += users.name  +" , "+ customer.age;
+                        profileCityCountry += customer.city +" , "+ customer.country;
+                        inputUsername += "<label class='form-control-label' for='input-username'>Username</label><input type='text' id='input-username' class='form-control form-control-alternative'+ placeholder='Username' name='username' readonly value='" + username + "'>";
+                        inputEmail += "<label class='form-control-label' for='input-email'>Email address</label><input type='email' id='input-email' class='form-control form-control-alternative'+ placeholder='jesse@example.com' name='email' value='" + users.email + "'>";
+                        inputName += "<label class='form-control-label' for='name'>Name</label><input type='text' id='input-name' class='form-control form-control-alternative'+ placeholder='name' name='name' value='" + users.name + "'>";
+                        inputAge += "<label class='form-control-label' for='age'>Age</label><input type='number' id='input-age' class='form-control form-control-alternative'+ placeholder='age' name='age' value='" + customer.age + "'>";
+                        inputAddress += "<label class='form-control-label' for='input-address'>Address</label><input type='text' id='input-address' class='form-control form-control-alternative' + placeholder='Home Address' name='address' value='" + customer.address + "'>"
+                        inputCity += "<label class='form-control-label' for='input-city'>City</label><input type='text' id='input-city' class='form-control form-control-alternative'+ placeholder='City' name='city' value='" + customer.city + "'>";
+                        inputCountry += "<label class='form-control-label' for='input-country'>Country</label><input type='text' id='input-country' class='form-control form-control-alternative' + placeholder='Country' name='country' value='" + customer.country + "'>";
+                        inputPostal += "<label class='form-control-label' for='input-country'>Postal code</label><input type='number' id='input-postal-code' class='form-control form-control-alternative'+ placeholder='Postal code' name='postal' value='" + customer.postal + "'>";
+
+                        document.getElementById('profileNameAge').innerHTML = profileNameAge;
+                        document.getElementById('profileCityCountry').innerHTML = profileCityCountry;
+                        document.getElementById('input-username').innerHTML = inputUsername;
+                        document.getElementById('input-email').innerHTML = inputEmail;
+                        document.getElementById('input-name').innerHTML = inputName;
+                        document.getElementById('input-age').innerHTML = inputAge;
+                        document.getElementById('input-address').innerHTML = inputAddress;
+                        document.getElementById('input-city').innerHTML = inputCity;
+                        document.getElementById('input-country').innerHTML = inputCountry;
+                        document.getElementById('input-postal-code').innerHTML = inputPostal;
+
+                    }
+                });
+
+            }
             })
         });
 
         $("#updateProfile").submit(function(e) {
-            var username = sessionStorage.getItem('username');
+            var username = <?php echo (json_encode($_SESSION['username'])); ?>;
             e.preventDefault();
 
             var formData = $(this).serialize();

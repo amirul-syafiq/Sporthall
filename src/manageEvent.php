@@ -61,28 +61,7 @@
                                         <td style="padding:20px 20px 20px 10px;"></td>
                                     </tr>
                                 </thead>
-                                <!-- <%
-                                List<Event> ul = (List<Event>)request.getAttribute("ul");
-                                    for(int i=0;i<ul.size();i++){
-                                       %>
-                                   <tbody>
-                                    <tr>
-                                        <td style="padding:20px 20px 20px 10px;"><%=ul.get(i).getId()%></td>
-                                        <td style="padding:20px 20px 20px 10px;"><%=ul.get(i).getEventName()%></td>
-                                        <td style="padding:20px 20px 20px 10px;"><%=ul.get(i).getEventDate()%></td>
-                                        <td style="padding:20px 20px 20px 10px;"><%=ul.get(i).getEventPrice()%></td>
-                                        <td style="padding:20px 20px 20px 10px;"><%=ul.get(i).getCustomerId()%></td>
-                                        <td style="padding:10px;">
-                                            <form method="get" action="DeleteEvent">
-                                                <input type="hidden" name="id" value="<%=ul.get(i).getId()%>">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                   <% } %>
-                                    </tr>
-                                </tbody>                 -->
                                 <tbody id='tbodyEvent'>
-
                                 </tbody>
                             </table>
                         </div>
@@ -101,13 +80,12 @@
 
                     var tbodyEvent = "";
                     for (let i = 0; i < event.length; i++) {
-                        event += "<tr><td style='padding:20px 20px 20px 10px;'>" + event[i].id +
+                        tbodyEvent += "<tr><td style='padding:20px 20px 20px 10px;'>" + event[i].id +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + event[i].eventName +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + event[i].eventDate +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + event[i].eventPrice +
                             "</td><td style='padding:20px 20px 20px 10px;'>" + event[i].customerId +
-                            "</td><td style='padding:10px;'><input type='hidden' name="
-                        id +" value='" + event[i].id + "'>" +
+                            "</td><td style='padding:10px;'><input type='hidden' name='id' value='" + event[i].id + "'>" +
                             "<button class='btn btn-danger' onclick='deleteEvent(\"" + event[i].id + "\")'>Delete</button></td></tr>"
 
                     }
