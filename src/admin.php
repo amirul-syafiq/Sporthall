@@ -17,8 +17,8 @@
             <div>
                 <a style="width: 50%; text-align: center;" href="../src/manageAllUsers.php" class="indexBtn">Manage User Profile</a><br>
                 <a style="width: 50%; text-align: center;" href="../src/viewHall.php" class="indexBtn">View Hall</a><br>
-                <a style="width: 50%; text-align: center;" href="..src/manageBooking.php" class="indexBtn">View Booking</a><br>
-                <a style="width: 50%; text-align: center;" href="..src/manageEvent.php" class="indexBtn">View Event</a><br>
+                <a style="width: 50%; text-align: center;" href="../src/manageBooking.php" class="indexBtn">View Booking</a><br>
+                <a style="width: 50%; text-align: center;" href="../src/manageEvent.php" class="indexBtn">View Event</a><br>
             </div>
         </div>
         </div>  
